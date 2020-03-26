@@ -1,16 +1,31 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const uid = require('uid');
+const port = 3000;
+
+let objs = {};
 
 // express configuration
-app.use(express.json({type: '*/*'}));
+app.use(express.json({ type: '*/*' }));
 
 // Set your routes
 app.get('/', (req, res) => res.send('Hello World!'))
 app.post('/', function (req, res) {
-    
     res.send(`Received object. ${JSON.stringify(req.body)}`);
+});
 
+app.post('/share', (req, res) => {
+    let id = uid(16);
+    objs[id] = req.body;
+    res.send({ success: true, link: `http://localhost:3000/${id}` });
+});
+
+app.get('/:id', (req, res) => {
+    if (req.params.id && objs[req.params.id]) {
+        res.send(objs[req.params.id]);
+    } else {
+        res.status(404).send({ success: false, error: 404, message: "Not Found!" });
+    }
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
