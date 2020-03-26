@@ -22,7 +22,9 @@ app.post('/share', (req, res) => {
 
 app.get('/:id', (req, res) => {
     if (req.params.id && objs[req.params.id]) {
-        res.send(objs[req.params.id]);
+        var data = objs[req.params.id];
+        delete objs[req.params.id];
+        res.send(data);
     } else {
         res.status(404).send({ success: false, error: 404, message: "Not Found!" });
     }
