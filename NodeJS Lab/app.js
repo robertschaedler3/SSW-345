@@ -4,18 +4,14 @@ const port = 3002;
 const app = express();
 
 const routes = require('./routes/routes');
+
 // Use Node.js body parsing middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true,
 }));
 
-app.get('/', (request, response) => {
-    response.send({
-        message: 'Node.js and Express REST API'
-    }
-    );
-});
+routes(app);
 
 // Start the server
 const server = app.listen(port, (error) => {
@@ -23,5 +19,3 @@ const server = app.listen(port, (error) => {
 
     console.log(`Server listening on port ${server.address().port}`);
 });
-
-routes(app);
