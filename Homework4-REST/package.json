@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Practice with REST concepts.",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "start": "node app.js"
   },
   "main": "index.js",
   "keywords": [
