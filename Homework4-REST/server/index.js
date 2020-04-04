@@ -17,7 +17,7 @@ app.post('/', function (req, res) {
 app.post('/share', (req, res) => {
     let id = uid(16);
     objs[id] = req.body;
-    res.send({ success: true, link: `http://localhost:3000/${id}` });
+    res.send({ success: true, link: `http://localhost:${port}/${id}` });
 });
 
 app.get('/:id', (req, res) => {
@@ -26,7 +26,7 @@ app.get('/:id', (req, res) => {
         delete objs[req.params.id];
         res.send(data);
     } else {
-        res.status(404).send({ success: false, error: 404, message: "Not Found!" });
+        res.status(404).send({ success: false, error: 404, message: "Not Found" });
     }
 });
 
