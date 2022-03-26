@@ -15,7 +15,7 @@
     "dotenv": "^8.2.0",
     "parse-link-header": "^1.0.1",
     "request": "^2.88.0",
-    "minimist": ">=1.2.2"
+    "minimist": ">=1.2.6"
   },
   "devDependencies": {
     "chai": "^4.2.0",
